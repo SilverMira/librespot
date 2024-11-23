@@ -111,7 +111,6 @@ where
     thread_rng().fill_bytes(&mut client_nonce);
 
     let platform = match crate::config::OS {
-        "android" => Platform::PLATFORM_ANDROID_ARM,
         "freebsd" | "netbsd" | "openbsd" => match ARCH {
             "x86_64" => Platform::PLATFORM_FREEBSD_X86_64,
             _ => Platform::PLATFORM_FREEBSD_X86,
@@ -120,7 +119,7 @@ where
             "aarch64" => Platform::PLATFORM_IPHONE_ARM64,
             _ => Platform::PLATFORM_IPHONE_ARM,
         },
-        "linux" => match ARCH {
+        "linux" | "android" => match ARCH {
             "arm" | "aarch64" => Platform::PLATFORM_LINUX_ARM,
             "blackfin" => Platform::PLATFORM_LINUX_BLACKFIN,
             "mips" => Platform::PLATFORM_LINUX_MIPS,
